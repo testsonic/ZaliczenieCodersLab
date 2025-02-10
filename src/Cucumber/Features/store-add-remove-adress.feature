@@ -13,3 +13,4 @@ Feature: Create new address
       | email                          | password       | nameAndSurname    | alias   | address      | city     | zip/postal code | country          | phone             |
       | "ProjektZaliczenie1@test.pl"   | "TrudneHaslo1" | "Jako Tako"     | "Jako"  | "Dluga 33"   | "Gdynia" | "80-180"        | "United Kingdom" | "1231231"         |
       | "wprlfsndiprqmjxlrq@poplk.com" | "TrudneHaslo1" | "Karol Kowalski" | "Kowal" | "Szeroka 55" | "Gorzow"   | "01005"         | "United Kingdom" | "+22 311 4512 21" |
+      | "wprlfsndiprqmjxlrq@test.com" | "Kolo123" | "Karol Kowalski" | "Kowal" | "Szeroka 55" | "Gorzow"   | "01005"         | "United Kingdom" | "+22 311 4512 21" |
