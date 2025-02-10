@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.List;
+
 public class AddressFormPage {
     private WebDriver driver;
 
@@ -44,8 +46,12 @@ public class AddressFormPage {
     @FindBy (className = "alert-success")
     private WebElement SuccesfullLoginAlert;
 
+    @FindBy(className = "address-body")
+    private List<WebElement> AllAddresses;
+
     public void GoAndCreateNewAdresses (String alias , String Adress, String City, String Postcode, String Country, String PhoneNumb){
         AdressesBtn.click();
+        int BeforeCreationAddressesSize = AllAddresses.size();
         CreateNewAdressBtn.click();
         AliasInput.clear();
         AliasInput.sendKeys(alias);
@@ -56,7 +62,7 @@ public class AddressFormPage {
         select.selectByVisibleText(Country);
         PhoneNumbInput.sendKeys(PhoneNumb);
         SubmitNewAddressBtn.click();
-
+        Assert.assertNotEquals("New adress wasn't created", BeforeCreationAddressesSize, BeforeCreationAddressesSize+1);
     }
     public void SuccesfullLoginPrompt(){
         Assert.assertEquals("Missing successfull address creation prompt", "Address successfully added!", SuccesfullLoginAlert.getText());

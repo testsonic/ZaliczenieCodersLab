@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class ExistingAddressFormPage {
@@ -21,10 +22,15 @@ public class ExistingAddressFormPage {
     private List<WebElement> AllAddresses;
 
     public void CheckCreationAndCorrection(String nameAndSurname, String alias, String address, String city, String zipCode, String country, String phone){
+
         String CreatedAddress = AllAddresses.get(AllAddresses.size() - 1).getText();
         String[] AddressParts = CreatedAddress.split("\\n");
         String[] ExpectedAddresses = {nameAndSurname,alias,address,city,zipCode,country,phone};
-        Assert.assertArrayEquals("Missing ",ExpectedAddresses,AddressParts);
+        Assert.assertEquals("Missing data in created address",ExpectedAddresses.length,AddressParts.length);
+        Assert.assertArrayEquals("Wrong or missorder data",ExpectedAddresses,AddressParts);
+
+
+
 
     }
 

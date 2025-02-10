@@ -3,7 +3,6 @@ package pl.coderslab.store;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.bidi.log.Log;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -37,7 +36,7 @@ public class LoginPage {
         PasswordLoginInput.sendKeys(password);
         SubmitLoginBtn.click();
     }
-    public void CheckLogin () {
+    public void CheckLogoutButtonVisibility() {
         Assert.assertTrue("Failed to login",LogoutBtn.isDisplayed());;
     }
 

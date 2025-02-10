@@ -26,7 +26,7 @@ public class CreateNewAddressSteps {
     public void LoginToAccount(String email, String password) {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.loginAs(email, password);
-        loginPage.CheckLogin();
+        loginPage.CheckLogoutButtonVisibility();
     }
 
     @When("User creating new address with input {string} {string} {string} {string} {string} {string}")
