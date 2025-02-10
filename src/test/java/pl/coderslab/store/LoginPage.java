@@ -1,5 +1,6 @@
 package pl.coderslab.store;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.bidi.log.Log;
@@ -26,6 +27,9 @@ public class LoginPage {
     @FindBy(id = "submit-login")
     private WebElement SubmitLoginBtn;
 
+    @FindBy(className = "logout")
+    private WebElement LogoutBtn;
+
 
     public void loginAs(String email, String password) {
         GoToLoginPageBtn.click();
@@ -33,4 +37,8 @@ public class LoginPage {
         PasswordLoginInput.sendKeys(password);
         SubmitLoginBtn.click();
     }
+    public void CheckLogin () {
+        Assert.assertTrue("Failed to login",LogoutBtn.isDisplayed());;
+    }
+
 }

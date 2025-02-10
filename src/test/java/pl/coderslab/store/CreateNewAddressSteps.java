@@ -12,27 +12,39 @@ import java.time.Duration;
 public class CreateNewAddressSteps {
     WebDriver driver;
 
-    @Given("an open browser with opened store site and login user with credentials: {string}:{string}")
-        public void OpenBrowserAndLogin (String email, String password) {
+    @Given("an open browser with opened store site")
+    public void OpenBrowser() {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
-
         driver.get("https://mystore-testlab.coderslab.pl");
+
+
+    }
+
+    @And("logged user with credentials: {string}:{string}")
+    public void LoginToAccount(String email, String password) {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.loginAs(email , password);
-
+        loginPage.loginAs(email, password);
+        loginPage.CheckLogin();
     }
+
     @When("User creating new address with input {string} {string} {string} {string} {string} {string}")
-    public void CreateNewAddress(String alias, String address, String city, String zipCode, String country, String phone){
-        AddressPage addressPage = new AddressPage(driver);
-        addressPage.GoAndCreateNewAdresses(alias,address,city,zipCode,country,phone);
+    public void CreateNewAddress(String alias, String address, String city, String zipCode, String country, String phone) {
+        AddressFormPage addressFormPage = new AddressFormPage(driver);
+        addressFormPage.GoAndCreateNewAdresses(alias, address, city, zipCode, country, phone);
+        addressFormPage.SuccesfullLoginPrompt();
     }
 
-    @Then("User sees new address")
+    @Then("User sees new address {string} {string} {string} {string} {string} {string} {string}")
+        public void CheckNewAddedAddress(String nameAndSurname,String alias, String address, String city, String zipCode, String country, String phone){
+        ExistingAddressFormPage existingAddressFormPage = new ExistingAddressFormPage(driver);
+        existingAddressFormPage.CheckCreationAndCorrection(alias,nameAndSurname,address,city,zipCode,country,phone);
+        existingAddressFormPage.GetExistingAddresses();
 
+    }
     @And("close browser")
-    public void tearDown(){
+    public void tearDown() {
         driver.quit();
     }
 }

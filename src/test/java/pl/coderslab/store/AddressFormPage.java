@@ -1,15 +1,16 @@
 package pl.coderslab.store;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
-public class AddressPage {
+public class AddressFormPage {
     private WebDriver driver;
 
-    public AddressPage(WebDriver driver) {
+    public AddressFormPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
@@ -40,6 +41,9 @@ public class AddressPage {
     @FindBy (xpath = "//button[@type='submit']")
     private WebElement SubmitNewAddressBtn;
 
+    @FindBy (className = "alert-success")
+    private WebElement SuccesfullLoginAlert;
+
     public void GoAndCreateNewAdresses (String alias , String Adress, String City, String Postcode, String Country, String PhoneNumb){
         AdressesBtn.click();
         CreateNewAdressBtn.click();
@@ -54,5 +58,9 @@ public class AddressPage {
         SubmitNewAddressBtn.click();
 
     }
+    public void SuccesfullLoginPrompt(){
+        Assert.assertEquals("Missing successfull address creation prompt", "Address successfully added!", SuccesfullLoginAlert.getText());
+    }
+
 
 }
