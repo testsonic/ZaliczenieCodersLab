@@ -22,7 +22,7 @@ public class CreateNewAddressSteps {
 
     }
 
-    @And("logged user with credentials: {string}:{string}")
+    @And("logged user with credentials:{string}:{string}")
     public void LoginToAccount(String email, String password) {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.loginAs(email, password);
