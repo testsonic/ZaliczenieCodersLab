@@ -37,23 +37,25 @@ public class CreateNewAddressSteps {
     }
 
     @Then("User sees new address {string} {string} {string} {string} {string} {string} {string}")
-        public void CheckNewAddedAddress(String nameAndSurname,String alias, String address, String city, String zipCode, String country, String phone){
+    public void CheckNewAddedAddress(String nameAndSurname, String alias, String address, String city, String zipCode, String country, String phone) {
         ExistingAddressFormPage existingAddressFormPage = new ExistingAddressFormPage(driver);
-        existingAddressFormPage.CheckCreationAndCorrection(alias,nameAndSurname,address,city,zipCode,country,phone);
+        existingAddressFormPage.CheckCreationAndCorrection(alias, nameAndSurname, address, city, zipCode, country, phone);
     }
+
     @And("User deleting new added address")
-    public void DelateAndCheckAddress(){
+    public void DelateAndCheckAddress() {
         ExistingAddressFormPage existingAddressFormPage = new ExistingAddressFormPage(driver);
         existingAddressFormPage.DelateNewAddedAddress();
 
     }
 
     @And("Correct address was deleted {string} {string} {string} {string} {string} {string}")
-    public void CheckCorrectAddressDelate (String alias, String address, String city, String zipCode, String country, String phone){
+    public void CheckCorrectAddressDelate(String alias, String address, String city, String zipCode, String country, String phone) {
         ExistingAddressFormPage existingAddressFormPage = new ExistingAddressFormPage(driver);
-        existingAddressFormPage.CheckDelatingAddress(alias,address,city,zipCode,country,phone);
+        existingAddressFormPage.CheckDelatingAddress(alias, address, city, zipCode, country, phone);
 
     }
+
     @And("close browser")
     public void tearDown() {
         driver.quit();

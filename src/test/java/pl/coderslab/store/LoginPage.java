@@ -11,7 +11,7 @@ public class LoginPage {
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
     }
 
     @FindBy(xpath = "//a[@title ='Log in to your customer account']")
@@ -36,8 +36,10 @@ public class LoginPage {
         PasswordLoginInput.sendKeys(password);
         SubmitLoginBtn.click();
     }
+
     public void CheckLogoutButtonVisibility() {
-        Assert.assertTrue("Failed to login",LogoutBtn.isDisplayed());;
+        Assert.assertTrue("Failed to login", LogoutBtn.isDisplayed());
+        ;
     }
 
 }

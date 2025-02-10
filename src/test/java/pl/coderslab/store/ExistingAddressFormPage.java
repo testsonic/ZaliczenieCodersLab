@@ -7,9 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 public class ExistingAddressFormPage {
@@ -23,15 +20,13 @@ public class ExistingAddressFormPage {
     @FindBy(className = "address-body")
     private List<WebElement> AllAddresses;
 
-    public void CheckCreationAndCorrection(String nameAndSurname, String alias, String address, String city, String zipCode, String country, String phone){
+    public void CheckCreationAndCorrection(String nameAndSurname, String alias, String address, String city, String zipCode, String country, String phone) {
 
         String CreatedAddress = AllAddresses.get(AllAddresses.size() - 1).getText();
         String[] AddressParts = CreatedAddress.split("\\n");
-        String[] ExpectedAddresses = {nameAndSurname,alias,address,city,zipCode,country,phone};
-        Assert.assertEquals("Missing data in created address",ExpectedAddresses.length,AddressParts.length);
-        Assert.assertArrayEquals("Wrong or missorder data",ExpectedAddresses,AddressParts);
-
-
+        String[] ExpectedAddresses = {nameAndSurname, alias, address, city, zipCode, country, phone};
+        Assert.assertEquals("Missing data in created address", ExpectedAddresses.length, AddressParts.length);
+        Assert.assertArrayEquals("Wrong or missorder data", ExpectedAddresses, AddressParts);
 
 
     }
@@ -40,15 +35,16 @@ public class ExistingAddressFormPage {
         int BeforeDelationSize = AllAddresses.size();
         WebElement DelateBtn = driver.findElement(By.xpath("(//span[contains(text(),'Delete')])[" + AllAddresses.size() + "]"));
         DelateBtn.click();
-        Assert.assertNotEquals("Failed to delate address",BeforeDelationSize,AllAddresses.size());
+        Assert.assertNotEquals("Failed to delate address", BeforeDelationSize, AllAddresses.size());
     }
 
-    public void CheckDelatingAddress(String alias, String address, String city, String zipCode, String country, String phone){
-        for (int i = 0; i < AllAddresses.size() -1 ; i++) {
+    public void CheckDelatingAddress(String alias, String address, String city, String zipCode, String country, String phone) {
+        for (int i = 0; i < AllAddresses.size() - 1; i++) {
             String CreatedAddress = AllAddresses.get(i).getText();
-            Assert.assertFalse("Wrong address was delated",AllAddresses.contains(alias)&&AllAddresses.contains(address)&&AllAddresses.contains(city)&&AllAddresses.contains(zipCode)&&AllAddresses.contains(country)&&AllAddresses.contains(phone));
+            Assert.assertFalse("Wrong address was delated", AllAddresses.contains(alias) && AllAddresses.contains(address) && AllAddresses.contains(city) && AllAddresses.contains(zipCode) && AllAddresses.contains(country) && AllAddresses.contains(phone));
 
         }
 
 
-}}
+    }
+}
