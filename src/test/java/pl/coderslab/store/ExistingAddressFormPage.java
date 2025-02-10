@@ -8,6 +8,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class ExistingAddressFormPage {
@@ -34,10 +36,19 @@ public class ExistingAddressFormPage {
 
     }
 
-    public void GetExistingAddresses() {
+    public void DelateNewAddedAddress() {
+        int BeforeDelationSize = AllAddresses.size();
         WebElement DelateBtn = driver.findElement(By.xpath("(//span[contains(text(),'Delete')])[" + AllAddresses.size() + "]"));
         DelateBtn.click();
+        Assert.assertNotEquals("Failed to delate address",BeforeDelationSize,AllAddresses.size());
     }
 
+    public void CheckDelatingAddress(String alias, String address, String city, String zipCode, String country, String phone){
+        for (int i = 0; i < AllAddresses.size() -1 ; i++) {
+            String CreatedAddress = AllAddresses.get(i).getText();
+            Assert.assertFalse("Wrong address was delated",AllAddresses.contains(alias)&&AllAddresses.contains(address)&&AllAddresses.contains(city)&&AllAddresses.contains(zipCode)&&AllAddresses.contains(country)&&AllAddresses.contains(phone));
 
-}
+        }
+
+
+}}

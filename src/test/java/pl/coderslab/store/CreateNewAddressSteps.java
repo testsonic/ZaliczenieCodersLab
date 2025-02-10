@@ -40,7 +40,18 @@ public class CreateNewAddressSteps {
         public void CheckNewAddedAddress(String nameAndSurname,String alias, String address, String city, String zipCode, String country, String phone){
         ExistingAddressFormPage existingAddressFormPage = new ExistingAddressFormPage(driver);
         existingAddressFormPage.CheckCreationAndCorrection(alias,nameAndSurname,address,city,zipCode,country,phone);
-        existingAddressFormPage.GetExistingAddresses();
+    }
+    @And("User deleting new added address")
+    public void DelateAndCheckAddress(){
+        ExistingAddressFormPage existingAddressFormPage = new ExistingAddressFormPage(driver);
+        existingAddressFormPage.DelateNewAddedAddress();
+
+    }
+
+    @And("Correct address was deleted {string} {string} {string} {string} {string} {string}")
+    public void CheckCorrectAddressDelate (String alias, String address, String city, String zipCode, String country, String phone){
+        ExistingAddressFormPage existingAddressFormPage = new ExistingAddressFormPage(driver);
+        existingAddressFormPage.CheckDelatingAddress(alias,address,city,zipCode,country,phone);
 
     }
     @And("close browser")

@@ -6,6 +6,8 @@ Feature: Create new address
     And logged user with credentials: "ProjektZaliczenie1@test.pl":"TrudneHaslo1"
     When User creating new address with input <alias> <address> <city> <zip/postal code> <country> <phone>
     Then User sees new address "Jako Tako" <alias> <address> <city> <zip/postal code> <country> <phone>
+    And User deleting new added address
+    And Correct address was deleted <alias> <address> <city> <zip/postal code> <country> <phone>
     And close browser
     Examples:
       | alias  | address    | city     | zip/postal code | country          | phone     |
