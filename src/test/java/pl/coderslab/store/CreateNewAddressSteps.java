@@ -1,18 +1,22 @@
 package pl.coderslab.store;
 
+import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class CreateNewAddressSteps {
     WebDriver driver;
 
     @Given("an open browser with opened store site")
     public void OpenBrowser() {
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
+        driver = new ChromeDriver(options); // Tryb Headless bez otwierania przeglądarki, usun argument options dla zwyklego wyswietalania
         driver.manage().window().maximize();
         driver.get("https://mystore-testlab.coderslab.pl");
 
