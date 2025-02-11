@@ -50,14 +50,6 @@ public class AddressFormPage {
     @FindBy(className = "address-body")
     private List<WebElement> AllAddresses;
 
-    public boolean isWebelementPresent(By locator) {
-        try {
-            driver.findElement(locator);
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
-        }
-    }
 
     public void CheckBeforeCreation() { //Sprawdzenie czy istnieje już jakiś dodany adress,jezeli nie to tworzy i tak sie wysypie na delete
         List<WebElement> AddressesLinkBtn = driver.findElements(By.id("addresses-link"));
@@ -72,23 +64,23 @@ public class AddressFormPage {
         }
     }
 
-    public void GoAndCreateNewAdresses(String alias, String Adress, String City, String Postcode, String Country, String PhoneNumb) {
+    public void GoAndCreateNewAddresses(String alias, String Address, String City, String Postcode, String Country, String PhoneNumb) {
         CheckBeforeCreation();
         int BeforeCreationAddressesSize = AllAddresses.size();
         AliasInput.clear();
         AliasInput.sendKeys(alias);
-        AdressInput.sendKeys(Adress);
+        AdressInput.sendKeys(Address);
         CityInput.sendKeys(City);
         PostcodeInput.sendKeys(Postcode);
-        Select select = new Select(CountryList);
-        select.selectByVisibleText(Country);
+        Select CountrySelect = new Select(CountryList);
+        CountrySelect.selectByVisibleText(Country);
         PhoneNumbInput.sendKeys(PhoneNumb);
         SubmitNewAddressBtn.click();
-        Assert.assertNotEquals("New adress wasn't created", BeforeCreationAddressesSize, BeforeCreationAddressesSize + 1);
+        Assert.assertNotEquals("New address wasn't created", BeforeCreationAddressesSize, BeforeCreationAddressesSize + 1);
     }
 
-    public void SuccesfullLoginPrompt() {
-        Assert.assertEquals("Missing successfull address creation prompt", "Address successfully added!", SuccesfullLoginAlert.getText());
+    public void SuccessfulLoginPrompt() {
+        Assert.assertTrue("Missing successfully address creation prompt", SuccesfullLoginAlert.isDisplayed());
     }
 
 

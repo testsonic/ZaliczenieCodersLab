@@ -29,8 +29,8 @@ public class CreateNewAddressSteps {
     @When("User creating new address with input {string} {string} {string} {string} {string} {string}")
     public void CreateNewAddress(String alias, String address, String city, String zipCode, String country, String phone) {
         AddressFormPage addressFormPage = new AddressFormPage(driver);
-        addressFormPage.GoAndCreateNewAdresses(alias, address, city, zipCode, country, phone);
-        addressFormPage.SuccesfullLoginPrompt();
+        addressFormPage.GoAndCreateNewAddresses(alias, address, city, zipCode, country, phone);
+        addressFormPage.SuccessfulLoginPrompt();
     }
 
     @Then("User sees new address {string} {string} {string} {string} {string} {string} {string}")
