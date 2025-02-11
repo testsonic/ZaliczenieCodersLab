@@ -55,7 +55,6 @@ public class AddressFormPage {
         List<WebElement> AddressesLinkBtn = driver.findElements(By.id("addresses-link"));
         if (!AddressesLinkBtn.isEmpty()) {
             driver.findElement(By.id("addresses-link")).click();
-            System.out.println(driver.getCurrentUrl());
             Assert.assertEquals("Wrong url", "https://mystore-testlab.coderslab.pl/index.php?controller=addresses", driver.getCurrentUrl());
             CreateNewAdressBtn.click();
         } else {
