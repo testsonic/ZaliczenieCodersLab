@@ -7,15 +7,12 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.time.Duration;
-
 public class CreateNewAddressSteps {
     WebDriver driver;
 
     @Given("an open browser with opened store site")
     public void OpenBrowser() {
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
         driver.get("https://mystore-testlab.coderslab.pl");
 
@@ -43,16 +40,16 @@ public class CreateNewAddressSteps {
     }
 
     @And("User deleting new added address")
-    public void DelateAndCheckAddress() {
+    public void DeleteAndCheckAddress() {
         ExistingAddressFormPage existingAddressFormPage = new ExistingAddressFormPage(driver);
-        existingAddressFormPage.DelateNewAddedAddress();
+        existingAddressFormPage.DeleteNewAddedAddress();
 
     }
 
     @And("Correct address was deleted {string} {string} {string} {string} {string} {string}")
-    public void CheckCorrectAddressDelate(String alias, String address, String city, String zipCode, String country, String phone) {
+    public void CheckCorrectAddressDelete(String alias, String address, String city, String zipCode, String country, String phone) {
         ExistingAddressFormPage existingAddressFormPage = new ExistingAddressFormPage(driver);
-        existingAddressFormPage.CheckDelatingAddress(alias, address, city, zipCode, country, phone);
+        existingAddressFormPage.CheckDeletedAddress(alias, address, city, zipCode, country, phone);
 
     }
 

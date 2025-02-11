@@ -1,6 +1,7 @@
 package pl.coderslab.store;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class AddressFormPage {
     private WebDriver driver;
@@ -17,8 +19,6 @@ public class AddressFormPage {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(id = "addresses-link")
-    private WebElement AdressesBtn;
 
     @FindBy(xpath = "//a[@data-link-action='add-address']")
     private WebElement CreateNewAdressBtn;
@@ -50,10 +50,31 @@ public class AddressFormPage {
     @FindBy(className = "address-body")
     private List<WebElement> AllAddresses;
 
+    public boolean isWebelementPresent(By locator) {
+        try {
+            driver.findElement(locator);
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
+    public void CheckBeforeCreation() { //Sprawdzenie czy istnieje już jakiś dodany adress,jezeli nie to tworzy i tak sie wysypie na delete
+        List<WebElement> AddressesLinkBtn = driver.findElements(By.id("addresses-link"));
+        if (!AddressesLinkBtn.isEmpty()) {
+            driver.findElement(By.id("addresses-link")).click();
+            System.out.println(driver.getCurrentUrl());
+            Assert.assertEquals("Wrong url", "https://mystore-testlab.coderslab.pl/index.php?controller=addresses", driver.getCurrentUrl());
+            CreateNewAdressBtn.click();
+        } else {
+            System.out.println("\u26A0 WARNING: There is no existing address. Creating new one, deleting will not work");
+            driver.findElement(By.id("address-link")).click();
+        }
+    }
+
     public void GoAndCreateNewAdresses(String alias, String Adress, String City, String Postcode, String Country, String PhoneNumb) {
-        AdressesBtn.click();
+        CheckBeforeCreation();
         int BeforeCreationAddressesSize = AllAddresses.size();
-        CreateNewAdressBtn.click();
         AliasInput.clear();
         AliasInput.sendKeys(alias);
         AdressInput.sendKeys(Adress);
