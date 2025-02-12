@@ -1,6 +1,5 @@
-package pl.coderslab.store;
+package pl.coderslab.store.steps;
 
-import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -8,6 +7,9 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import pl.coderslab.store.pages.AddressFormPage;
+import pl.coderslab.store.pages.ExistingAddressFormPage;
+import pl.coderslab.store.pages.LoginPage;
 
 public class CreateNewAddressSteps {
     WebDriver driver;
@@ -16,7 +18,7 @@ public class CreateNewAddressSteps {
     public void OpenBrowser() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
-        driver = new ChromeDriver(options); // Tryb Headless bez otwierania przeglądarki, usun argument options dla zwyklego wyswietalania
+        driver = new ChromeDriver(); // Tryb Headless bez otwierania przeglądarki, usun argument options dla zwyklego wyswietalania
         driver.manage().window().maximize();
         driver.get("https://mystore-testlab.coderslab.pl");
 
@@ -26,7 +28,7 @@ public class CreateNewAddressSteps {
     @And("logged user with credentials:{string}:{string}")
     public void LoginToAccount(String email, String password) {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.loginAs(email, password);
+        loginPage.loginToCreateAddress(email, password);
         loginPage.CheckLogoutButtonVisibility();
     }
 

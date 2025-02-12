@@ -1,4 +1,4 @@
-package pl.coderslab.store;
+package pl.coderslab.store.pages;
 
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
@@ -30,7 +30,7 @@ public class LoginPage {
     private WebElement LogoutBtn;
 
 
-    public void loginAs(String email, String password) {
+    public void loginToCreateAddress(String email, String password) {
         GoToLoginPageBtn.click();
         EmailLoginInput.sendKeys(email);
         PasswordLoginInput.sendKeys(password);

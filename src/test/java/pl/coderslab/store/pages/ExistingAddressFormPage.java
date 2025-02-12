@@ -1,4 +1,4 @@
-package pl.coderslab.store;
+package pl.coderslab.store.pages;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
