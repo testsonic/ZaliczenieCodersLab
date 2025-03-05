@@ -46,7 +46,11 @@ public class ShopOrderPaySteps {
     @Then("Take a screnshoot with order confirmation and price")
     public void TakeOrderScreenshoot() throws IOException {
         FinalizationOrderPage finalizationOrderPage = new FinalizationOrderPage(driver);
-        finalizationOrderPage.TakeScreenshot();
+        finalizationOrderPage.TakeOrderConfirmationScreenshot();
 
+    }
+    @And ("Close browser")
+    public void CloseBrowser(){
+        driver.quit();
     }
 }

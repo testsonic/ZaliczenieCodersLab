@@ -1,24 +1,16 @@
 package pl.coderslab.store.pages;
 
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.io.File;
 import java.text.SimpleDateFormat;
-import java.nio.file.StandardCopyOption;
 import java.util.Date;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 
 
 import java.time.Duration;
@@ -54,6 +46,9 @@ public class FinalizationOrderPage {
     @FindBy(xpath = "//button[@type='submit' and contains(text(), 'Place order')]")
     private WebElement placeOrderBtn;
 
+    @FindBy (id = "content")
+    private WebElement orderConfirmation;
+
 
     public void ShippingAndPayment() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -71,8 +66,10 @@ public class FinalizationOrderPage {
 
     }
 
-    public void TakeScreenshot() throws IOException {
-        File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+    public void TakeOrderConfirmationScreenshot() throws IOException {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("document.body.style.zoom='60%'"); // zoom strony
+        File screenshot = orderConfirmation.getScreenshotAs(OutputType.FILE);
         String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         File destFile = new File("screenshot_" + timestamp + ".png");
         FileUtils.copyFile(screenshot,destFile);
