@@ -34,7 +34,7 @@ public class ProductPage {
     private WebElement finalProceedToCheckoutBtn;
 
 
-    public void OrderItem(String UserAmount, String item, String UserSize) {
+    public void OrderItem(String UserAmount, String UserSize) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         Select select = new Select(size);
         select.selectByVisibleText(UserSize);

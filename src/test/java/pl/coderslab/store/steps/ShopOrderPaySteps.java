@@ -40,10 +40,10 @@ public class ShopOrderPaySteps {
 
     }
 
-    @And("User order {string} of {string} in {string}")
-    public void OrderItem(String amount, String item, String size) {
+    @And("User order {string} in {string}")
+    public void OrderItem(String amount, String size) {
         ProductPage productPage = new ProductPage(driver);
-        productPage.OrderItem(amount,item,size);
+        productPage.OrderItem(amount,size);
 
     }
 

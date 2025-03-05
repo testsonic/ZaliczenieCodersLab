@@ -1,9 +1,9 @@
 Feature: Wgl inny feature
 
-  Scenario Outline: User can add and remove new address
+  Scenario Outline: User check discount and order an item with pay by check option
     Given Logged user <email> <password> on store site
     When User checks <discount> of <item>
-    And User order <amount> of <item> in <size>
+    And User order <amount> in <size>
     And 'Pay by check' with 'pick up in store'
     Then Take a screenshot with order confirmation and price
     And Close browser
