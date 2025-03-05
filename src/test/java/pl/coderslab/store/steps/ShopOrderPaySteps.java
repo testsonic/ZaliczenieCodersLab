@@ -10,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import pl.coderslab.store.pages.FinalizationOrderPage;
 import pl.coderslab.store.pages.LoginPage;
 import pl.coderslab.store.pages.MainStorePage;
+import pl.coderslab.store.pages.ProductPage;
 
 import java.io.IOException;
 
@@ -19,7 +20,7 @@ public class ShopOrderPaySteps {
     @Given("Logged user {string} {string} on store site")
     public void OpenBrowserAndLogin(String email, String password) {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
+        //  options.addArguments("--headless");
         driver = new ChromeDriver(); // Tryb Headless bez otwierania przeglądarki, usun argument options dla zwyklego wyswietalania
         driver.manage().window().maximize();
         driver.get("https://mystore-testlab.coderslab.pl");
@@ -30,27 +31,37 @@ public class ShopOrderPaySteps {
         loginPage.CheckLogoutButtonVisibility();
     }
 
-    @When("User checks {string} and order {string} of {string} in {string}")
-    public void CheckDiscountAndOrderItem(String discount, String amount, String item, String size) {
+    @When("User checks {string} of {string}")
+    public void CheckDiscountAndOrderItem(String discount, String item) {
         MainStorePage mainStorePage = new MainStorePage(driver);
         mainStorePage.GoToStoreMainPage();
-        mainStorePage.CheckProductsAndDiscount(discount, amount, item, size);
+        mainStorePage.CheckProductsAndDiscount(discount, item);
+
+
+    }
+
+    @And("User order {string} of {string} in {string}")
+    public void OrderItem(String amount, String item, String size) {
+        ProductPage productPage = new ProductPage(driver);
+        productPage.OrderItem(amount,item,size);
 
     }
 
     @And("'Pay by check' with 'pick up in store'")
-    public void OrderFinalization (){
+    public void OrderFinalization() {
         FinalizationOrderPage finalizationOrderPage = new FinalizationOrderPage(driver);
         finalizationOrderPage.ShippingAndPayment();
     }
-    @Then("Take a screnshoot with order confirmation and price")
+
+    @Then("Take a screenshot with order confirmation and price")
     public void TakeOrderScreenshoot() throws IOException {
         FinalizationOrderPage finalizationOrderPage = new FinalizationOrderPage(driver);
         finalizationOrderPage.TakeOrderConfirmationScreenshot();
 
     }
-    @And ("Close browser")
-    public void CloseBrowser(){
+
+    @And("Close browser")
+    public void CloseBrowser() {
         driver.quit();
     }
 }

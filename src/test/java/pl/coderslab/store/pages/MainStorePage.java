@@ -31,20 +31,7 @@ public class MainStorePage {
     @FindBy(className = "product-title")
     private List<WebElement> ProductsDisplayed;
 
-    @FindBy(id = "quantity_wanted")
-    private WebElement Amount;
 
-    @FindBy(id = "group_1")
-    private WebElement size;
-
-    @FindBy(className = "add-to-cart")
-    private WebElement AddBtn;
-
-    @FindBy(xpath = "//a[@href='//mystore-testlab.coderslab.pl/index.php?controller=cart&action=show' and text()='Proceed to checkout']")
-    private WebElement proceedToCheckoutBtn;
-
-    @FindBy (xpath = "//a[@href='https://mystore-testlab.coderslab.pl/index.php?controller=order']")
-    private WebElement finalProceedToCheckoutBtn;
 
 
     public boolean IsElementDisplayed(By selector) { //Sprawdzenie czy istnieje element
@@ -61,31 +48,17 @@ public class MainStorePage {
         MainPageBtn.click();
     }
 
-    public void CheckProductsAndDiscount(String discount, String UserAmount, String item, String UserSize) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-        // click an item
+    public void CheckProductsAndDiscount(String discount,String item) {
         for (int i = 1; i < ProductsDisplayed.size(); i++) {
             if (item.equals(ProductsDisplayed.get(i).getText())) {
                 ProductsDisplayed.get(i).click();
-            }
-        }
+            }}
+
+        // click an item
         if (IsElementDisplayed(By.cssSelector(".discount.discount-percentage"))) {
             WebElement ActualDiscount = driver.findElement(By.cssSelector(".discount.discount-percentage"));
-            Assert.assertEquals("Wrong ", "SAVE " + discount, ActualDiscount.getText());
+            Assert.assertEquals("Wrong discount", "SAVE " + discount, ActualDiscount.getText());
         }
 
-
-        Select select = new Select(size);
-        select.selectByVisibleText(UserSize);
-        wait.until(ExpectedConditions.elementToBeClickable(AddBtn));
-        Amount.sendKeys(Keys.CONTROL + "a");
-        Amount.sendKeys(UserAmount);
-        AddBtn.click();
-        wait.until(ExpectedConditions.elementToBeClickable(proceedToCheckoutBtn)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(finalProceedToCheckoutBtn)).click();
-
     }
-
 }
-

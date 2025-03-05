@@ -1,19 +1,20 @@
 package pl.coderslab.store.pages;
 
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.*;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.IOException;
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-
-
 import java.time.Duration;
+import java.util.Date;
 
 
 public class FinalizationOrderPage {
@@ -46,7 +47,7 @@ public class FinalizationOrderPage {
     @FindBy(xpath = "//button[@type='submit' and contains(text(), 'Place order')]")
     private WebElement placeOrderBtn;
 
-    @FindBy (id = "content")
+    @FindBy(id = "content")
     private WebElement orderConfirmation;
 
 
@@ -72,7 +73,7 @@ public class FinalizationOrderPage {
         File screenshot = orderConfirmation.getScreenshotAs(OutputType.FILE);
         String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         File destFile = new File("screenshot_" + timestamp + ".png");
-        FileUtils.copyFile(screenshot,destFile);
+        FileUtils.copyFile(screenshot, destFile);
 
 
     }
