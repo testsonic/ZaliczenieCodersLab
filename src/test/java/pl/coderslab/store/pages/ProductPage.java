@@ -14,10 +14,11 @@ import java.time.Duration;
 public class ProductPage {
     private WebDriver driver;
 
-    public ProductPage(WebDriver driver){
+    public ProductPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
+
     @FindBy(id = "quantity_wanted")
     private WebElement Amount;
 

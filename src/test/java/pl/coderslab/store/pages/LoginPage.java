@@ -39,7 +39,7 @@ public class LoginPage {
 
     public void CheckLogoutButtonVisibility() {
         Assert.assertTrue("Failed to login", LogoutBtn.isDisplayed());
-        ;
+
     }
 
 }
