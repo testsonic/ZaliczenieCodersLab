@@ -5,7 +5,8 @@ Feature: Wgl inny feature
     When User checks <discount> of <item>
     And User order <amount> in <size>
     And 'Pay by check' with 'pick up in store'
-    Then Take a screenshot with order confirmation and price
+    And Take a screenshot with order confirmation and price
+    Then User go to order history check total price and status
     And Close browser
 
     Examples:

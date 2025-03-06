@@ -7,10 +7,8 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import pl.coderslab.store.pages.FinalizationOrderPage;
-import pl.coderslab.store.pages.LoginPage;
-import pl.coderslab.store.pages.MainStorePage;
-import pl.coderslab.store.pages.ProductPage;
+import pl.coderslab.store.cfg.GlobalData;
+import pl.coderslab.store.pages.*;
 
 import java.io.IOException;
 
@@ -51,14 +49,26 @@ public class ShopOrderPaySteps {
     public void OrderFinalization() {
         FinalizationOrderPage finalizationOrderPage = new FinalizationOrderPage(driver);
         finalizationOrderPage.ShippingAndPayment();
+        finalizationOrderPage.GetPriceOrderConfirmation();
     }
 
-    @Then("Take a screenshot with order confirmation and price")
+    @And("Take a screenshot with order confirmation and price")
     public void TakeOrderScreenshoot() throws IOException {
         FinalizationOrderPage finalizationOrderPage = new FinalizationOrderPage(driver);
         finalizationOrderPage.TakeOrderConfirmationScreenshot();
 
     }
+
+    @Then("User go to order history check total price and status")
+    public void CheckOrderHistoryPriceAndStatus(){
+        OrderHistoryPage orderHistoryPage = new OrderHistoryPage(driver);
+        orderHistoryPage.GoTOrderHistory();
+        orderHistoryPage.CheckStatusAndPrice();
+    }
+
+
+
+
 
     @And("Close browser")
     public void CloseBrowser() {
