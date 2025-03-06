@@ -7,7 +7,6 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import pl.coderslab.store.cfg.GlobalData;
 import pl.coderslab.store.pages.*;
 
 import java.io.IOException;
@@ -41,7 +40,7 @@ public class ShopOrderPaySteps {
     @And("User order {string} in {string}")
     public void OrderItem(String amount, String size) {
         ProductPage productPage = new ProductPage(driver);
-        productPage.OrderItem(amount,size);
+        productPage.OrderItem(amount, size);
 
     }
 
@@ -60,14 +59,11 @@ public class ShopOrderPaySteps {
     }
 
     @Then("User go to order history check total price and status")
-    public void CheckOrderHistoryPriceAndStatus(){
+    public void CheckOrderHistoryPriceAndStatus() {
         OrderHistoryPage orderHistoryPage = new OrderHistoryPage(driver);
         orderHistoryPage.GoTOrderHistory();
         orderHistoryPage.CheckStatusAndPrice();
     }
-
-
-
 
 
     @And("Close browser")

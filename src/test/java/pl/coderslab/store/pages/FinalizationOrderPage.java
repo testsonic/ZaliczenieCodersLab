@@ -58,9 +58,8 @@ public class FinalizationOrderPage {
     @FindBy(id = "order-reference-value")
     private WebElement OrderReference;
 
-    @FindBy (className = "done")
+    @FindBy(className = "done")
     private WebElement successfulOrder;
-
 
 
     public void ShippingAndPayment() {
@@ -86,11 +85,11 @@ public class FinalizationOrderPage {
         File destFile = new File("screenshot_" + timestamp + ".png");
         FileUtils.copyFile(screenshot, destFile);
         js.executeScript("document.body.style.zoom='100%'"); // powrót do 100% zooma na stronie
-        Assert.assertTrue("No successful msg after order place",successfulOrder.isDisplayed());
+        Assert.assertTrue("No successful msg after order place", successfulOrder.isDisplayed());
 
     }
 
-    public void GetPriceOrderConfirmation(){ //Zapisanie do zmiennych globalnych żeby później porównać
+    public void GetPriceOrderConfirmation() { //Zapisanie do zmiennych globalnych żeby później porównać
         String priceConfirm = priceConfirmation.getText();
         String orderReference = OrderReference.getText().replace("Order reference: ", "");
         GlobalData.orderReference = orderReference;

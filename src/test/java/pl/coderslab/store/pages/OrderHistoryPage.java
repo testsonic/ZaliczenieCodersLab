@@ -8,8 +8,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pl.coderslab.store.cfg.GlobalData;
 
-import java.util.List;
-
 public class OrderHistoryPage {
     private WebDriver driver;
 
@@ -23,7 +21,6 @@ public class OrderHistoryPage {
 
     @FindBy(id = "history-link")
     private WebElement OrderHistoryBtn;
-
 
 
     public void GoTOrderHistory() {
@@ -41,11 +38,9 @@ public class OrderHistoryPage {
         WebElement statusInOrderHistory = driver.findElement(By.xpath(statusXPath));
 
         Assert.assertTrue("Missing order in order history", priceInOrderHistory.isDisplayed());
-        Assert.assertEquals("Price in order history is not correct",GlobalData.price,priceInOrderHistory.getText());
+        Assert.assertEquals("Price in order history is not correct", GlobalData.price, priceInOrderHistory.getText());
         Assert.assertTrue("Missing payment status in order history", statusInOrderHistory.isDisplayed());
-        Assert.assertEquals("Status in order history is not correct",GlobalData.expectedStatus,statusInOrderHistory.getText());
-
-
+        Assert.assertEquals("Status in order history is not correct", GlobalData.expectedStatus, statusInOrderHistory.getText());
 
 
     }
