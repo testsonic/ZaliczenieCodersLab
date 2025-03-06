@@ -11,4 +11,4 @@ Feature: Wgl inny feature
 
     Examples:
       | email                        | password       | discount | amount | item                          | size |
-      | "ProjektZaliczenie1@test.pl" | "TrudneHaslo1" | "0%"    | "4"    | "The Best Is Yet To Come'..." | "L"  |
+      | "ProjektZaliczenie1@test.pl" | "TrudneHaslo1" | "20%"    | "4"    | "Hummingbird Printed Sweater" | "L"  |

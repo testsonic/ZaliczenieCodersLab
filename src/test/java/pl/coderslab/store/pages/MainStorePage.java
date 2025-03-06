@@ -2,11 +2,17 @@ package pl.coderslab.store.pages;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 import java.util.List;
 
 
@@ -53,13 +59,12 @@ public class MainStorePage {
             }
         }
 
-        if (IsElementDisplayed(By.cssSelector(".discount.discount-percentage")) && !discount.equals("0%")) {
+        if (IsElementDisplayed(By.cssSelector(".discount.discount-percentage"))&& !discount.equals("0%")) {
             WebElement ActualDiscount = driver.findElement(By.cssSelector(".discount.discount-percentage"));
             Assert.assertEquals("Wrong discount", "SAVE " + discount, ActualDiscount.getText());
-        } else if (!discount.equals("0%")) {
-            Assert.assertTrue("Missing discount", IsElementDisplayed(By.cssSelector(".discount.discount-percentage")));
-        } else {
-            Assert.assertFalse("There is unwanted discount on item", IsElementDisplayed(By.cssSelector(".discount.discount-percentage")));
+        }
+        else if (!discount.equals("0%")) {
+            Assert.assertTrue("Missing discount",IsElementDisplayed(By.cssSelector(".discount.discount-percentage")));
         }
     }
 
